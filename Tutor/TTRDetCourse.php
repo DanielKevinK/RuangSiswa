@@ -103,10 +103,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="../index.php" class="nav-item nav-link">Home</a>
-                    <a href="../about.php" class="nav-item nav-link">About</a>
-                    <a href="#" class="nav-item nav-link">Enrolled Courses</a>
-                    <a href="../contact.php" class="nav-item nav-link">Contact</a>
+                    <a href="TutorHome.php" class="nav-item nav-link">Home</a>
+                    <a href="#" class="nav-item nav-link active">Tutor Courses</a>
                 </div>
                 <a href="../VIP/logout.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
@@ -118,7 +116,7 @@
             <div class="container py-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Enrolled Courses</h1>
+                        <h1 class="display-3 text-white animated slideInDown">Tutor Courses</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -130,11 +128,6 @@
             </div>
         </div>
         <!-- Header End -->
-        <div class="container">
-            <h1>Tutor: <?php echo $courseDetail['Name'];?></h1>
-            <h1>Course: <?php echo $courseDetail['CourseName'];?></h1>
-            <h1>Grade: <?php echo $courseDetail['Grade'];?></h1>
-        </div>
        
         <div class="mytabs">
             <?php 
@@ -315,8 +308,9 @@
             }
             ?>
           </div>
+
         <div class="container">
-          <div class="py-4">
+            <div class="py-4">
                 <form>
                     <input type="button" value="< Return" class="btn btn-white btn-lg-return upscale-30 px-4 py-1" onclick="history.back()">
                 </form>
@@ -370,128 +364,7 @@
         <!-- Footer End -->
     <?php
     }
-    else{
-    ?>
-        <!-- Navbar Start -->
-        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-            <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Ruang Siswa</h2>
-            </a>
-            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="../index.php" class="nav-item nav-link">Home</a>
-                    <a href="../about.php" class="nav-item nav-link">About</a>
-                    <a href="../Courses/Courses.php" class="nav-item nav-link">Courses</a>
-                    <a href="../leaderboards.php" class="nav-item nav-link">Leaderboard</a>
-                    <a href="../contact.php" class="nav-item nav-link">Contact</a>
-                </div>
-            </div>
-        </nav>
-        <!-- Navbar End -->
-
-
-        <!-- Header Start -->
-        <div class="container-fluid bg-primary py-5 mb-5 page-header">
-            <div class="container py-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Courses</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
-                                <?php
-                                $courseName = mysqli_fetch_assoc($CourseRN)
-                                ?>
-                                <li class="breadcrumb-item text-white active" aria-current="page"><?php echo $courseName["CourseName"];?></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-        <?php
-        $quiz = mysqli_fetch_assoc($qz);
-        ?>
-
-        <div class="container">
-            <?php
-            $chapterName = mysqli_fetch_assoc($Chemistry_Chapter)
-            ?>
-                <div class="row g-4">
-                        <h1 class="mb-4"><?php echo $chapterName["ChapterName"];?></h1>
-                </div>
-            
-                <?php
-                    while($row = mysqli_fetch_assoc($chssn) ){
-                
-                ?>
-                        <a href="../Sessions/Sessions.php?ch=<?php echo $row['ChapterID']?>&ssi=<?php echo $row['sessionID']?>" class="btn btn-white btn-lg-course py-3 px-4 mt-2"><?php echo $row["sessionName"];?></a>
-                <?php
-                    }
-                ?>
-
-                <a href="../Quiz/Quiz.php?cls=<?php echo $class?>&ch=<?php echo $quiz['ChapterID']?>&qd=<?php echo $quiz['QuizID']?>&crs=<?php echo $course?>" class="btn btn-white btn-lg-course py-3 px-4 mt-2">Quiz</a>
-            
-                <div class="py-4">
-                    <a class="btn btn-white btn-lg-return upscale-30 px-4 py-1" href="../Course/Course.php?cls=<?php echo $class?>&v=<?php echo $course?>">< Return</a>
-                </div>
-        </div>
-        
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer pt-5 mt-6 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="text-white mb-3">Quick Link</h4>
-                        <a class="btn btn-link" href="../about.php">About Us</a>
-                        <a class="btn btn-link" href="../contact.php">Contact Us</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="text-white mb-3">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>St. Mansion Valley, Malang, Indonesia</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>ruangsiswa@edu.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href="www.twitter.com"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="www.youtube.com"><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="text-white mb-3">Newsletter</h4>
-                        <p>Enter Your Email To Get Newsletter From Us</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Ruangsiswa 2023</a>, All Right Reserved.
-
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-    <?php
-    }
-    ?>
+   ?>
 
 
     

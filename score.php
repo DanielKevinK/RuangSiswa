@@ -124,12 +124,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="#" class="nav-item nav-link">Home</a>
+                <a href="index.php" class="nav-item nav-link">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="Courses/courses.php" class="nav-item nav-link">Courses</a>
                 <a href="leaderboards.php" class="nav-item nav-link">Leaderboard</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
+            <a href="VIP/login.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Sign in<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->

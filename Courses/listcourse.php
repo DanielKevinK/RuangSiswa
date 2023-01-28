@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     require_once 'connection.php';
 
@@ -55,200 +56,311 @@
     </div>
     <!-- Spinner End -->
 
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Ruang Siswa</h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../index.php" class="nav-item nav-link">Home</a>
-                <a href="../about.php" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link active">Courses</a>
-                <a href="../leaderboards.php" class="nav-item nav-link">Leaderboard</a>
-                <a href="../contact.php" class="nav-item nav-link">Contact</a>
-            </div>
-    </nav>
-    <!-- Navbar End -->
-
-
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Courses</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->
-
-
-    <!-- Categories Start -->
-       <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
-                <h1 class="mb-5">List Available Course</h1>
-            </div>
-            <div class="container py-3">
-                <a href="#" class="btn btn-white btn-lg-crcl px-4 py-1 nav-linked dropdown-toggle upscale-20 section-title-custom" data-bs-toggle="dropdown">Class <?php echo $cID?></a>
-                <div class="dropdown-menu fade-down container-btn m-0">
-                    <?php while($j < 13){
-                        ?>
-                    <a href="listcourse.php?v=<?php echo $j?>" class="dropdown-item"><?php echo $j?></a>
-                    <?php
-                     $j++;
-                    }
-                    ?>
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        
-                        <?php
-                        if(!empty($check = mysqli_fetch_assoc($chck))){
-
-                        
-                            for($i = 1 ; $i <=4 ; $i++){
-                                $row = mysqli_fetch_assoc($course);
-                                ?>
-                                <?php
-                                if($i == 1 || $i == 4){
-                                    ?>
-                                    <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                                        <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                            <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
-                                            <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                                <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php
-                                }
-                                else{
-                                ?>
-                                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                                        <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                        <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
-                                            <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                                <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php   
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <?php
-                    for($i = 5 ; $i <=5 ; $i++){
-                        $row = mysqli_fetch_assoc($course);
-                    ?>
-                        <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                            <a class="position-relative d-block h-100 overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                <img class="img-fluid position-absolute w-100 h-100" src="../img/<?php echo $row["imageName"];?>" alt="" style="object-fit: cover;">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                </div>
-                            </a>
-                        </div>
-                    
-                        <?php           
-                        }
-                        ?>
-                    <div class="col-lg-7 col-md-6">
-                        <div class="row g-3">
-                        <?php
-                            for($i = 6 ; $i <=9 ; $i++){
-                                $row = mysqli_fetch_assoc($course);
-                                ?>
-                                <?php
-                                if($i == 6 || $i == 9){
-                                    ?>
-                                    <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                                        <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                            <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
-                                            <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                                <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php
-                                }
-                                else{
-                                ?>
-                                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                                        <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                        <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
-                                            <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                                <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php   
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <?php
-                    for($i = 10 ; $i <=10 ; $i++){
-                        $row = mysqli_fetch_assoc($course);
-                    ?>
-                        <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                            <a class="position-relative d-block h-100 overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
-                                <img class="img-fluid position-absolute w-100 h-100" src="../img/<?php echo $row["imageName"];?>" alt="" style="object-fit: cover;">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
-                                </div>
-                            </a>
-                        </div>
-                    
-                        <?php           
-                        }
-                    }
-                    ?>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </div>
-    <!-- Categories Start -->
     <?php
-    if(empty($check)){
+    if(isset($_SESSION["Username"])){
     ?>
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container text-center">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+            <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Ruang Siswa</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="../index.php" class="nav-item nav-link">Home</a>
+                    <a href="../about.php" class="nav-item nav-link">About</a>
+                    <a href="#" class="nav-item nav-link active">Courses</a>
+                    <a href="../leaderboards.php" class="nav-item nav-link">Leaderboard</a>
+                    <a href="../contact.php" class="nav-item nav-link">Contact</a>
+                </div>
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-primary py-5 mb-5 page-header">
+            <div class="container py-5">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <i class="bi bi-question-circle display-1 text-primary"></i>
-                        <h1 class="display-1">What Happen?</h1>
-                        <h1 class="mb-4">No Available Course Found</h1>
-                        <p class="mb-4">We’re sorry looks like the course on this class is still not added</p>
-                        <p class="mb-4">Stay tuned for the next update!</p>
+                    <div class="col-lg-10 text-center">
+                        <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Header End -->
+
+
+        <!-- Categories Start -->
+        <!-- Categories Start -->
+        <div class="container-xxl py-5 category">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                    <h1 class="mb-5">List Available Course</h1>
+                </div>
+                <div class="container py-3">
+                    <a href="#" class="btn btn-white btn-lg-crcl px-4 py-1 nav-linked dropdown-toggle upscale-20 section-title-custom" data-bs-toggle="dropdown">Class <?php echo $cID?></a>
+                    <div class="dropdown-menu fade-down container-btn m-0">
+                        <?php while($j < 13){
+                            ?>
+                        <a href="listcourse.php?v=<?php echo $j?>" class="dropdown-item"><?php echo $j?></a>
+                        <?php
+                        $j++;
+                        }
+                        ?>
+                    </div>
+                </div>
+                    <div class="container">
+                        <div class="row g-4">
+                                <h1 class="mb-4">Grade: 10</h1>
+                        </div>
+                    
+                        <?php
+                            while($crs10 = mysqli_fetch_assoc($course10) ){
+                        
+                        ?>
+                                <a href="Course.php?ch=<?php echo $crs10['CourseID'];?>" class="btn btn-white btn-lg-course py-3 px-4 mt-2"><?php echo $crs10['CourseName'];?></a>
+                        <?php
+                            }
+                        ?>
+                        <div class="py-4">
+                            <form>
+                                <input type="button" value="< Return" class="btn btn-white btn-lg-return upscale-30 px-4 py-1" onclick="history.back()">
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <!-- Categories Start -->
+        <?php
+        if(empty($check)){
+        ?>
+            <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="container text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <i class="bi bi-question-circle display-1 text-primary"></i>
+                            <h1 class="display-1">What Happen?</h1>
+                            <h1 class="mb-4">No Available Course Found</h1>
+                            <p class="mb-4">We’re sorry looks like the course on this class is still not added</p>
+                            <p class="mb-4">Stay tuned for the next update!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
     <?php
     }
+    else{
     ?>
+
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+            <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Ruang Siswa</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="../index.php" class="nav-item nav-link">Home</a>
+                    <a href="../about.php" class="nav-item nav-link">About</a>
+                    <a href="#" class="nav-item nav-link active">Courses</a>
+                    <a href="../leaderboards.php" class="nav-item nav-link">Leaderboard</a>
+                    <a href="../contact.php" class="nav-item nav-link">Contact</a>
+                </div>
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-primary py-5 mb-5 page-header">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+        <!-- Categories Start -->
+        <!-- Categories Start -->
+        <div class="container-xxl py-5 category">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                    <h1 class="mb-5">List Available Course</h1>
+                </div>
+                <div class="container py-3">
+                    <a href="#" class="btn btn-white btn-lg-crcl px-4 py-1 nav-linked dropdown-toggle upscale-20 section-title-custom" data-bs-toggle="dropdown">Class <?php echo $cID?></a>
+                    <div class="dropdown-menu fade-down container-btn m-0">
+                        <?php while($j < 13){
+                            ?>
+                        <a href="listcourse.php?v=<?php echo $j?>" class="dropdown-item"><?php echo $j?></a>
+                        <?php
+                        $j++;
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="row g-3">
+                            
+                            <?php
+                            if(!empty($check = mysqli_fetch_assoc($chck))){
+
+                            
+                                for($i = 1 ; $i <=4 ; $i++){
+                                    $row = mysqli_fetch_assoc($course);
+                                    ?>
+                                    <?php
+                                    if($i == 1 || $i == 4){
+                                        ?>
+                                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                                            <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                                <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
+                                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php
+                                    }
+                                    else{
+                                    ?>
+                                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                                            <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                            <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
+                                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php   
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        for($i = 5 ; $i <=5 ; $i++){
+                            $row = mysqli_fetch_assoc($course);
+                        ?>
+                            <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                                <a class="position-relative d-block h-100 overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                    <img class="img-fluid position-absolute w-100 h-100" src="../img/<?php echo $row["imageName"];?>" alt="" style="object-fit: cover;">
+                                    <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
+                                        <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                    </div>
+                                </a>
+                            </div>
+                        
+                            <?php           
+                            }
+                            ?>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="row g-3">
+                            <?php
+                                for($i = 6 ; $i <=9 ; $i++){
+                                    $row = mysqli_fetch_assoc($course);
+                                    ?>
+                                    <?php
+                                    if($i == 6 || $i == 9){
+                                        ?>
+                                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                                            <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                                <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
+                                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php
+                                    }
+                                    else{
+                                    ?>
+                                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                                            <a class="position-relative d-block overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                            <img class="img-fluid" src="../img/<?php echo $row["imageName"];?>" alt="">
+                                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                                                    <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php   
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        for($i = 10 ; $i <=10 ; $i++){
+                            $row = mysqli_fetch_assoc($course);
+                        ?>
+                            <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                                <a class="position-relative d-block h-100 overflow-hidden" href="../Course/Course.php?cls=<?php echo $row['Class']?>&v=<?php echo $row['CourseID']?>">
+                                    <img class="img-fluid position-absolute w-100 h-100" src="../img/<?php echo $row["imageName"];?>" alt="" style="object-fit: cover;">
+                                    <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
+                                        <h5 class="m-0"><?php echo $row["CourseName"];?></h5>
+                                    </div>
+                                </a>
+                            </div>
+                        
+                            <?php           
+                            }
+                        }
+                        ?>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- Categories Start -->
+        <?php
+        if(empty($check)){
+        ?>
+            <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="container text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <i class="bi bi-question-circle display-1 text-primary"></i>
+                            <h1 class="display-1">What Happen?</h1>
+                            <h1 class="mb-4">No Available Course Found</h1>
+                            <p class="mb-4">We’re sorry looks like the course on this class is still not added</p>
+                            <p class="mb-4">Stay tuned for the next update!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+
+    }
+        ?>
         
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-6 wow fadeIn" data-wow-delay="0.1s">

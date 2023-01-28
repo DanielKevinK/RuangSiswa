@@ -69,9 +69,7 @@
                 <a href="#" class="nav-item nav-link active">Leaderboard</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="Courses/courses.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Study Now!<i class="fa fa-arrow-right ms-3"></i></a>
-        </div>
-    </nav>
+            <a href="VIP/login.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Sign in<i class="fa fa-arrow-right ms-3"></i></a>    </nav>
     <!-- Navbar End -->
 
 
